@@ -1,0 +1,9 @@
+E:\Jason\Godot\Projects\Bubble Blaster\.mono\temp\bin\Debug\Bubble Blaster.dll
+E:\Jason\Godot\Projects\Bubble Blaster\.mono\temp\bin\Debug\Bubble Blaster.pdb
+E:\Jason\Godot\Projects\Bubble Blaster\.mono\temp\obj\Debug\Bubble Blaster.csproj.AssemblyReference.cache
+E:\Jason\Godot\Projects\Bubble Blaster\.mono\temp\obj\Debug\Bubble Blaster.GeneratedMSBuildEditorConfig.editorconfig
+E:\Jason\Godot\Projects\Bubble Blaster\.mono\temp\obj\Debug\Bubble Blaster.AssemblyInfoInputs.cache
+E:\Jason\Godot\Projects\Bubble Blaster\.mono\temp\obj\Debug\Bubble Blaster.AssemblyInfo.cs
+E:\Jason\Godot\Projects\Bubble Blaster\.mono\temp\obj\Debug\Bubble Blaster.csproj.CoreCompileInputs.cache
+E:\Jason\Godot\Projects\Bubble Blaster\.mono\temp\obj\Debug\Bubble Blaster.dll
+E:\Jason\Godot\Projects\Bubble Blaster\.mono\temp\obj\Debug\Bubble Blaster.pdb
