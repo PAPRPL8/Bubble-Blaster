@@ -6,11 +6,11 @@ public class Ship : Node2D
     [Export]
     public int Speed = 400;
 
-    [Export]
-    public PackedScene BulletScene;
-
     public Vector2 ScreenSize;
     public Vector2 velocity = new Vector2();
+
+    [Signal]
+    public delegate void FireBullet(Vector2 position);
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -94,7 +94,7 @@ public class Ship : Node2D
             //GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
             if (eventMouseButton.Pressed)
             {
-                FireBullet();
+                EmitSignal(nameof(FireBullet), this.Position);
             }
         }
         //else if (@event is InputEventMouseMotion eventMouseMotion)
@@ -105,30 +105,32 @@ public class Ship : Node2D
     }
 
 
-    private void FireBullet()
-    {
-        // Create a new instance of the Mob scene.
-        var bullet = (Bullet)BulletScene.Instance();
-
-        // Set the mob's direction perpendicular to the path direction.
-        //float direction = mousePosition.Rotation + Mathf.Pi / 2;
-
-        // Set the mob's position to a random location.
-        bullet.Position = Position;
-
-        //float direction = bullet.Rotation;
-
-        // Add some randomness to the direction.
-        //direction += (float)GD.RandRange(-Mathf.Pi / 4, Mathf.Pi / 4);
-        //bullet.Rotation = direction;
-
-        // Choose the velocity.
-        //var velocity = new Vector2((float)GD.RandRange(150.0, 250.0), 0);
-        //bullet.LinearVelocity = velocity.Rotated(direction);
-
-        // Spawn the mob by adding it to the Main scene.
-        AddChild(bullet);
-
-    }
+    //private void FireBullet()
+    //{
+    //    // Create a new instance of the Mob scene.
+    //    var bullet = (Bullet)BulletScene.Instance();
+//
+    //    // Set the mob's direction perpendicular to the path direction.
+    //    //float direction = mousePosition.Rotation + Mathf.Pi / 2;
+//
+    //    // Set the mob's position to a random location.
+    //    bullet.Position = Position;
+//
+    //    float direction = bullet.Rotation;
+//
+    //    // Add some randomness to the direction.
+    //    
+    //   // direction += (float)GD.RandRange(-Mathf.Pi / 4, Mathf.Pi / 4);
+    //    
+    //    bullet.Rotation = direction;
+//
+    //    // Choose the velocity.
+    //    //var velocity = new Vector2((float)GD.RandRange(150.0, 250.0), 0);
+    //    //bullet.LinearVelocity = velocity.Rotated(direction);
+//
+    //    // Spawn the mob by adding it to the Main scene.
+    //    AddChild(bullet);
+//
+    //}
 
 }

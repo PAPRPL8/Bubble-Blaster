@@ -24,7 +24,7 @@ public class Bullet : Polygon2D
 
             velocity.x += 1;
 
-            velocity.x -= 1;
+            //velocity.x -= 1;
 
         //if (Input.IsActionPressed("move_down"))
         //{
