@@ -9,8 +9,10 @@ public class Ship : Node2D
     public Vector2 ScreenSize;
     public Vector2 velocity = new Vector2();
 
+    private PackedScene _bullet = GD.Load<PackedScene>("res://Bullet.tscn");
+
     [Signal]
-    public delegate void FireBullet(Vector2 position);
+    public delegate void FireBullet(PackedScene _bullet, Vector2 position, float rotation);
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -18,29 +20,8 @@ public class Ship : Node2D
         ScreenSize = GetViewportRect().Size;
     }
 
-    public override void _PhysicsProcess(float delta)
-    {
-        //GetInput();
-        //velocity = MoveAndSlide(velocity);
-    }
-
-     public void GetInput()
-    {
-        LookAt(GetGlobalMousePosition());
-        velocity = new Vector2();
-
-        if (Input.IsActionPressed("down"))
-            velocity = new Vector2(-Speed, 0).Rotated(Rotation);
-
-        if (Input.IsActionPressed("up"))
-            velocity = new Vector2(Speed, 0).Rotated(Rotation);
-
-        velocity = velocity.Normalized() * Speed;
-    }
-
     public override void _Process(float delta)
     {
-        
         var velocity = Vector2.Zero; // The player's movement vector.
 
         if (Input.IsActionPressed("move_right"))
@@ -75,16 +56,8 @@ public class Ship : Node2D
             y: Mathf.Clamp(Position.y, 0, ScreenSize.y)
         );
 
-
         LookAt(GetGlobalMousePosition());
-        
-
-        
-
     }
-
-        
-
 
     public override void _Input(InputEvent @event)
     {
@@ -92,45 +65,10 @@ public class Ship : Node2D
         if (@event is InputEventMouseButton eventMouseButton)
         {
             //GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
-            if (eventMouseButton.Pressed)
+            if (eventMouseButton.ButtonIndex == (int)ButtonList.Left && eventMouseButton.Pressed)
             {
-                EmitSignal(nameof(FireBullet), this.Position);
+                EmitSignal(nameof(FireBullet), _bullet, Position, Rotation);
             }
         }
-        //else if (@event is InputEventMouseMotion eventMouseMotion)
-            //GD.Print("Mouse Motion at: ", eventMouseMotion.Position);
-
-        // Print the size of the viewport.
-        //GD.Print("Viewport Resolution is: ", GetViewportRect().Size);
     }
-
-
-    //private void FireBullet()
-    //{
-    //    // Create a new instance of the Mob scene.
-    //    var bullet = (Bullet)BulletScene.Instance();
-//
-    //    // Set the mob's direction perpendicular to the path direction.
-    //    //float direction = mousePosition.Rotation + Mathf.Pi / 2;
-//
-    //    // Set the mob's position to a random location.
-    //    bullet.Position = Position;
-//
-    //    float direction = bullet.Rotation;
-//
-    //    // Add some randomness to the direction.
-    //    
-    //   // direction += (float)GD.RandRange(-Mathf.Pi / 4, Mathf.Pi / 4);
-    //    
-    //    bullet.Rotation = direction;
-//
-    //    // Choose the velocity.
-    //    //var velocity = new Vector2((float)GD.RandRange(150.0, 250.0), 0);
-    //    //bullet.LinearVelocity = velocity.Rotated(direction);
-//
-    //    // Spawn the mob by adding it to the Main scene.
-    //    AddChild(bullet);
-//
-    //}
-
 }
